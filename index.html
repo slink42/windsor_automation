@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Windsor Automation Systems | Smart Home & Building Automation</title>
+<meta name="description" content="Windsor Automation Systems provides intelligent home and building automation solutions. We specialise in Google Home integration, smart devices, and seamless automation ecosystems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1f3c;
+    --navy-mid: #162d52;
+    --steel: #2a4a7f;
+    --sky: #4a90d9;
+    --sky-light: #d6eaf8;
+    --gold: #c9a84c;
+    --gold-light: #f5e9c8;
+    --white: #ffffff;
+    --off-white: #f7f8fa;
+    --text-dark: #0d1f3c;
+    --text-mid: #3a4a63;
+    --text-light: #6b7d99;
+    --border: rgba(42,74,127,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(13,31,60,0.97);
+    backdrop-filter: blur(8px);
+    padding: 0 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .nav-brand {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+
+  .nav-logo {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--gold) 0%, #e8c06a 100%);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 18px; color: var(--navy);
+  }
+
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 600;
+    color: var(--white);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-name span { color: var(--gold); }
+
+  .nav-links {
+    display: flex; gap: 32px; list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none; font-size: 14px; font-weight: 500;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    background: var(--gold); color: var(--navy) !important;
+    padding: 8px 20px; border-radius: 6px;
+    font-weight: 600 !important; transition: opacity 0.2s !important;
+  }
+
+  .nav-cta:hover { opacity: 0.85; color: var(--navy) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: var(--navy);
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 100px 5vw 60px;
+    gap: 60px;
+    position: relative; overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(74,144,217,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-grid-pattern {
+    position: absolute; inset: 0; pointer-events: none;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .hero-text { position: relative; }
+
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+    padding: 6px 16px; border-radius: 100px;
+    font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-badge::before { content: '●'; font-size: 8px; }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 4.5vw, 62px);
+    font-weight: 700; line-height: 1.12;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  h1 em { color: var(--gold); font-style: normal; }
+
+  .hero-desc {
+    font-size: 18px; color: rgba(255,255,255,0.65);
+    max-width: 480px; line-height: 1.75; margin-bottom: 40px;
+  }
+
+  .hero-actions {
+    display: flex; gap: 16px; flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 14px 32px; border-radius: 8px;
+    font-weight: 600; font-size: 15px; text-decoration: none;
+    transition: opacity 0.2s; display: inline-block;
+  }
+
+  .btn-primary:hover { opacity: 0.88; }
+
+  .btn-outline {
+    border: 1.5px solid rgba(255,255,255,0.3); color: var(--white);
+    padding: 14px 32px; border-radius: 8px;
+    font-weight: 500; font-size: 15px; text-decoration: none;
+    transition: border-color 0.2s; display: inline-block;
+  }
+
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* HERO VISUAL */
+  .hero-visual {
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+
+  .hero-device {
+    width: 100%; max-width: 440px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 32px;
+    position: relative;
+  }
+
+  .device-header {
+    display: flex; align-items: center; gap: 12px; margin-bottom: 28px;
+  }
+
+  .device-icon {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: var(--sky); display: flex; align-items: center; justify-content: center;
+  }
+
+  .device-icon svg { width: 24px; height: 24px; fill: white; }
+
+  .device-title { color: white; font-weight: 600; font-size: 15px; }
+  .device-sub { color: rgba(255,255,255,0.5); font-size: 12px; }
+
+  .device-status {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(74,144,217,0.15); border: 1px solid rgba(74,144,217,0.3);
+    color: var(--sky); font-size: 12px; font-weight: 600;
+    padding: 4px 10px; border-radius: 100px;
+    margin-left: auto;
+  }
+
+  .device-status::before { content: '●'; font-size: 8px; }
+
+  .device-rooms {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+  }
+
+  .room-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 16px;
+    transition: background 0.2s;
+  }
+
+  .room-card.active { background: rgba(74,144,217,0.18); border-color: rgba(74,144,217,0.4); }
+
+  .room-label { font-size: 11px; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .room-value { font-size: 22px; font-weight: 600; color: white; }
+  .room-unit { font-size: 12px; color: rgba(255,255,255,0.5); }
+  .room-icon { font-size: 20px; margin-bottom: 8px; }
+
+  .google-badge {
+    margin-top: 24px;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 14px 18px;
+    display: flex; align-items: center; gap: 12px;
+  }
+
+  .google-g {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: white; display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 16px; color: #4285f4;
+    font-family: Arial, sans-serif; flex-shrink: 0;
+  }
+
+  .google-text { color: rgba(255,255,255,0.8); font-size: 13px; }
+  .google-text strong { color: white; display: block; }
+
+  /* TRUST BAR */
+  .trust-bar {
+    background: var(--off-white);
+    padding: 32px 5vw;
+    display: flex; align-items: center; gap: 48px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .trust-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-light);
+    white-space: nowrap;
+  }
+
+  .trust-items {
+    display: flex; gap: 40px; flex-wrap: wrap; align-items: center;
+  }
+
+  .trust-item {
+    font-size: 14px; color: var(--text-mid); font-weight: 500;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  .trust-item svg { width: 18px; height: 18px; color: var(--sky); flex-shrink: 0; }
+
+  /* SECTIONS */
+  section { padding: 100px 5vw; }
+
+  .section-tag {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--sky); margin-bottom: 12px;
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 3.5vw, 46px);
+    font-weight: 700; line-height: 1.2;
+    color: var(--text-dark); margin-bottom: 20px;
+  }
+
+  .section-desc {
+    font-size: 17px; color: var(--text-mid); max-width: 560px; line-height: 1.75;
+  }
+
+  /* SERVICES */
+  .services { background: var(--white); }
+
+  .services-header { margin-bottom: 60px; }
+
+  .services-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  }
+
+  .service-card {
+    border: 1.5px solid var(--border);
+    border-radius: 16px; padding: 36px 30px;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--sky) 0%, var(--gold) 100%);
+    opacity: 0; transition: opacity 0.2s;
+  }
+
+  .service-card:hover { border-color: var(--sky); transform: translateY(-4px); }
+  .service-card:hover::before { opacity: 1; }
+
+  .service-icon {
+    width: 52px; height: 52px; border-radius: 12px;
+    background: var(--sky-light); display: flex; align-items: center; justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .service-icon svg { width: 26px; height: 26px; stroke: var(--steel); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  h3 { font-size: 20px; font-weight: 600; color: var(--text-dark); margin-bottom: 12px; }
+
+  .service-desc { font-size: 15px; color: var(--text-mid); line-height: 1.7; }
+
+  /* GOOGLE HOME SECTION */
+  .google-section {
+    background: var(--navy);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+  }
+
+  .google-section h2, .google-section .section-tag { color: white; }
+  .google-section h2 { color: white; }
+  .google-section .section-desc { color: rgba(255,255,255,0.65); }
+
+  .integration-list { margin-top: 36px; display: flex; flex-direction: column; gap: 20px; }
+
+  .integration-item {
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+
+  .integration-bullet {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: rgba(74,144,217,0.2); border: 1px solid rgba(74,144,217,0.3);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .integration-bullet svg { width: 18px; height: 18px; stroke: var(--sky); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+  .integration-item h4 { font-size: 15px; font-weight: 600; color: white; margin-bottom: 4px; }
+  .integration-item p { font-size: 14px; color: rgba(255,255,255,0.55); line-height: 1.6; }
+
+  .google-devices {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+
+  .g-device-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px; padding: 22px 20px;
+  }
+
+  .g-device-icon { font-size: 28px; margin-bottom: 10px; }
+  .g-device-name { font-size: 13px; font-weight: 600; color: white; margin-bottom: 4px; }
+  .g-device-status { font-size: 12px; color: rgba(255,255,255,0.5); }
+  .g-device-status.on { color: #68c97e; }
+
+  /* WHY US */
+  .why-us { background: var(--off-white); }
+
+  .why-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; margin-top: 60px;
+  }
+
+  .why-card { text-align: center; }
+
+  .why-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px; font-weight: 700;
+    color: var(--navy); line-height: 1; margin-bottom: 8px;
+  }
+
+  .why-number span { color: var(--gold); }
+
+  .why-label { font-size: 14px; font-weight: 600; color: var(--text-dark); margin-bottom: 6px; }
+  .why-desc { font-size: 13px; color: var(--text-light); line-height: 1.6; }
+
+  /* CONTACT */
+  .contact-section {
+    background: var(--white);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+
+  .contact-info { padding-top: 8px; }
+
+  .contact-detail {
+    display: flex; align-items: flex-start; gap: 16px; margin-bottom: 28px;
+  }
+
+  .contact-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    background: var(--sky-light); display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-icon svg { width: 20px; height: 20px; stroke: var(--steel); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+  .contact-detail h4 { font-size: 13px; font-weight: 600; color: var(--text-light); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .contact-detail p { font-size: 15px; color: var(--text-dark); }
+
+  .contact-form {
+    background: var(--off-white);
+    border: 1.5px solid var(--border);
+    border-radius: 20px; padding: 40px;
+  }
+
+  .form-title { font-size: 20px; font-weight: 600; margin-bottom: 28px; }
+
+  .form-group { margin-bottom: 20px; }
+
+  label { display: block; font-size: 13px; font-weight: 600; color: var(--text-mid); margin-bottom: 8px; }
+
+  input, select, textarea {
+    width: 100%; padding: 12px 16px;
+    border: 1.5px solid var(--border); border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 15px;
+    color: var(--text-dark); background: white;
+    outline: none; transition: border-color 0.2s;
+  }
+
+  input:focus, select:focus, textarea:focus { border-color: var(--sky); }
+  textarea { resize: vertical; min-height: 100px; }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+  .submit-btn {
+    width: 100%; padding: 14px;
+    background: var(--navy); color: white;
+    border: none; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px; font-weight: 600;
+    cursor: pointer; transition: background 0.2s; margin-top: 8px;
+  }
+
+  .submit-btn:hover { background: var(--steel); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    padding: 60px 5vw 32px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    padding-bottom: 48px; border-bottom: 1px solid rgba(255,255,255,0.1);
+    margin-bottom: 32px;
+  }
+
+  .footer-brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px; font-weight: 700; color: white;
+    margin-bottom: 12px;
+  }
+
+  .footer-brand-name span { color: var(--gold); }
+
+  .footer-desc { font-size: 13px; line-height: 1.75; max-width: 300px; }
+
+  .footer-col h5 {
+    font-size: 12px; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: white; margin-bottom: 18px;
+  }
+
+  .footer-col a {
+    display: block; color: rgba(255,255,255,0.55);
+    text-decoration: none; font-size: 14px; margin-bottom: 10px;
+    transition: color 0.2s;
+  }
+
+  .footer-col a:hover { color: var(--gold); }
+
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; flex-wrap: wrap; gap: 12px;
+  }
+
+  .footer-bottom a { color: rgba(255,255,255,0.55); text-decoration: none; }
+  .footer-bottom a:hover { color: var(--gold); }
+
+  .abn-badge {
+    background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold); font-size: 12px; font-weight: 600;
+    padding: 4px 12px; border-radius: 100px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero, .google-section, .contact-section { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .services-grid { grid-template-columns: 1fr; }
+    .why-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">
+    <div class="nav-logo">W</div>
+    <div class="nav-name">Windsor <span>Automation</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#integration">Integration</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid-pattern"></div>
+  <div class="hero-text">
+    <div class="hero-badge">Google Home Certified Partner</div>
+    <h1>Intelligent Automation for <em>Modern Living</em></h1>
+    <p class="hero-desc">Windsor Automation Systems designs, installs, and supports smart home and building automation solutions — built around the Google Home ecosystem for seamless, voice-first control.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get a Free Consultation</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-device">
+      <div class="device-header">
+        <div class="device-icon">
+          <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <div>
+          <div class="device-title">Windsor Home Hub</div>
+          <div class="device-sub">Connected · 14 devices active</div>
+        </div>
+        <div class="device-status">Live</div>
+      </div>
+      <div class="device-rooms">
+        <div class="room-card active">
+          <div class="room-icon">💡</div>
+          <div class="room-label">Living Room</div>
+          <div class="room-value">On <span class="room-unit">· 72%</span></div>
+        </div>
+        <div class="room-card">
+          <div class="room-icon">🌡️</div>
+          <div class="room-label">Temperature</div>
+          <div class="room-value">21<span class="room-unit">°C</span></div>
+        </div>
+        <div class="room-card">
+          <div class="room-icon">🔒</div>
+          <div class="room-label">Security</div>
+          <div class="room-value">Secured</div>
+        </div>
+        <div class="room-card active">
+          <div class="room-icon">🎵</div>
+          <div class="room-label">Audio</div>
+          <div class="room-value">Playing</div>
+        </div>
+      </div>
+      <div class="google-badge">
+        <div class="google-g">G</div>
+        <div class="google-text">
+          <strong>Google Home Connected</strong>
+          "Hey Google, goodnight" — activates all scenes
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <span class="trust-label">Trusted by homeowners across Australia</span>
+  <div class="trust-items">
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Licensed Electricians
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Google Home Works Certified
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      5-Year Workmanship Warranty
+    </div>
+    <div class="trust-item">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      Australian Owned & Operated
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="services" id="services">
+  <div class="services-header">
+    <div class="section-tag">What We Do</div>
+    <h2>Complete Automation Solutions</h2>
+    <p class="section-desc">From single-room upgrades to whole-home systems, we deliver smart automation that works flawlessly with Google Home and Google Assistant.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      </div>
+      <h3>Smart Home Installation</h3>
+      <p class="service-desc">Full-home automation including lighting, climate, security, and entertainment — all integrated into a single, Google Home-controlled ecosystem.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      </div>
+      <h3>Google Home Integration</h3>
+      <p class="service-desc">We specialise in connecting third-party devices and custom systems to the Google Home platform via Works with Google Home certification and Matter protocol.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      </div>
+      <h3>Custom Dashboards & Control</h3>
+      <p class="service-desc">Bespoke control panels and dashboards for managing your automation system — accessible via touchscreen, phone, or voice command.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      </div>
+      <h3>Security & Access Control</h3>
+      <p class="service-desc">Smart locks, cameras, and alarm systems integrated with Google Home — monitor and secure your property from anywhere in the world.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"/></svg>
+      </div>
+      <h3>Energy Management</h3>
+      <p class="service-desc">Smart metering, solar integration, and automated scheduling to reduce energy use and cost — with real-time monitoring through your Google Home app.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">
+        <svg viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg>
+      </div>
+      <h3>Support & Maintenance</h3>
+      <p class="service-desc">Ongoing support, system updates, and maintenance plans to keep your automation running at peak performance — with remote diagnostics included.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GOOGLE HOME INTEGRATION SECTION -->
+<section class="google-section" id="integration">
+  <div>
+    <div class="section-tag">Google Home Partnership</div>
+    <h2>Built for the Google Home Ecosystem</h2>
+    <p class="section-desc">Windsor Automation Systems is a registered developer and integration partner with Google. Our systems are designed to work natively with Google Home, Google Assistant, and the Matter smart home standard.</p>
+    <div class="integration-list">
+      <div class="integration-item">
+        <div class="integration-bullet">
+          <svg viewBox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+        </div>
+        <div>
+          <h4>Real-time device control via Google Home app</h4>
+          <p>Every device we install is natively visible and controllable from the Google Home app on iOS and Android.</p>
+        </div>
+      </div>
+      <div class="integration-item">
+        <div class="integration-bullet">
+          <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        </div>
+        <div>
+          <h4>Full Google Assistant voice control</h4>
+          <p>Use natural language commands with any Google Nest speaker or display to control your entire home.</p>
+        </div>
+      </div>
+      <div class="integration-item">
+        <div class="integration-bullet">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <h4>Automations, routines & schedules</h4>
+          <p>We configure complex automations and Google Home Routines so your home responds intelligently to your lifestyle.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="google-devices">
+    <div class="g-device-card">
+      <div class="g-device-icon">🏠</div>
+      <div class="g-device-name">Google Nest Hub</div>
+      <div class="g-device-status on">● Connected</div>
+    </div>
+    <div class="g-device-card">
+      <div class="g-device-icon">🔊</div>
+      <div class="g-device-name">Nest Audio</div>
+      <div class="g-device-status on">● Active</div>
+    </div>
+    <div class="g-device-card">
+      <div class="g-device-icon">🌡️</div>
+      <div class="g-device-name">Nest Thermostat</div>
+      <div class="g-device-status on">● 21°C</div>
+    </div>
+    <div class="g-device-card">
+      <div class="g-device-icon">📹</div>
+      <div class="g-device-name">Nest Cam</div>
+      <div class="g-device-status on">● Recording</div>
+    </div>
+    <div class="g-device-card">
+      <div class="g-device-icon">🔒</div>
+      <div class="g-device-name">Smart Lock</div>
+      <div class="g-device-status on">● Secured</div>
+    </div>
+    <div class="g-device-card">
+      <div class="g-device-icon">💡</div>
+      <div class="g-device-name">Smart Lighting</div>
+      <div class="g-device-status">● 8 zones</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-us" id="about">
+  <div class="section-tag">Why Windsor</div>
+  <h2>Automation You Can Rely On</h2>
+  <p class="section-desc">Over a decade of experience delivering intelligent automation solutions to residential and commercial clients across Australia.</p>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-number">500<span>+</span></div>
+      <div class="why-label">Homes Automated</div>
+      <div class="why-desc">Residential and commercial projects completed across Victoria and New South Wales.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-number">10<span>+</span></div>
+      <div class="why-label">Years Experience</div>
+      <div class="why-desc">A decade of expertise in home automation, smart systems, and Google Home integration.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-number">4.9<span>★</span></div>
+      <div class="why-label">Average Rating</div>
+      <div class="why-desc">Consistently rated 5 stars by clients across Google, Houzz, and Word of Mouth.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-number">24<span>/7</span></div>
+      <div class="why-label">Remote Support</div>
+      <div class="why-desc">Our team monitors and supports your system around the clock via our secure remote portal.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="contact-info">
+    <div class="section-tag">Get In Touch</div>
+    <h2>Let's Automate Your Home</h2>
+    <p class="section-desc">Book a free, no-obligation consultation with one of our automation specialists. We'll assess your needs and design a system that works for your lifestyle and budget.</p>
+
+    <div style="margin-top: 44px;">
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 11.88 19.79 19.79 0 01.42 3.26 2 2 0 012.4 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.39a16 16 0 006.72 6.72l.77-.77a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0121 16.92z"/></svg>
+        </div>
+        <div>
+          <h4>Phone</h4>
+          <p>+61 3 9000 1234</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        </div>
+        <div>
+          <h4>Email</h4>
+          <p>info@windsorautomation.com.au</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        </div>
+        <div>
+          <h4>Service Area</h4>
+          <p>Melbourne, VIC & surrounding regions</p>
+        </div>
+      </div>
+      <div class="contact-detail">
+        <div class="contact-icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div>
+          <h4>Business Hours</h4>
+          <p>Monday – Friday, 8:00am – 6:00pm</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <div class="form-title">Request a Free Consultation</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" placeholder="John">
+      </div>
+      <div class="form-group">
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" placeholder="Smith">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="email">Email Address</label>
+      <input type="email" id="email" placeholder="john@example.com">
+    </div>
+    <div class="form-group">
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" placeholder="+61 4XX XXX XXX">
+    </div>
+    <div class="form-group">
+      <label for="service">Service Interest</label>
+      <select id="service">
+        <option>Smart Home Installation</option>
+        <option>Google Home Integration</option>
+        <option>Security & Access Control</option>
+        <option>Energy Management</option>
+        <option>Support & Maintenance</option>
+        <option>Other / General Enquiry</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="message">Tell us about your project</label>
+      <textarea id="message" placeholder="Describe your home, current setup, and what you're hoping to achieve..."></textarea>
+    </div>
+    <button class="submit-btn" onclick="this.textContent='Message Sent ✓'; this.style.background='#1a6b3e';">Send Enquiry</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="footer-brand-name">Windsor <span>Automation</span> Systems</div>
+      <p class="footer-desc">Professional smart home and building automation solutions, specialising in Google Home ecosystem integration. Serving Melbourne and regional Victoria.</p>
+      <div style="margin-top: 20px;"><span class="abn-badge">ABN 96 527 373 102</span></div>
+    </div>
+    <div class="footer-col">
+      <h5>Services</h5>
+      <a href="#services">Smart Home Install</a>
+      <a href="#integration">Google Home Integration</a>
+      <a href="#services">Security Systems</a>
+      <a href="#services">Energy Management</a>
+      <a href="#services">Ongoing Support</a>
+    </div>
+    <div class="footer-col">
+      <h5>Company</h5>
+      <a href="#about">About Us</a>
+      <a href="#contact">Contact</a>
+      <a href="#">Case Studies</a>
+      <a href="#">Partners</a>
+    </div>
+    <div class="footer-col">
+      <h5>Legal</h5>
+      <a href="privacy-policy.html">Privacy Policy</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Warranty Policy</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 Windsor Automation Systems Pty Ltd. All rights reserved.</span>
+    <div style="display:flex; gap: 24px;">
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Sitemap</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Smooth nav highlight
+  const sections = document.querySelectorAll('section[id], div[id]');
+  const navLinks = document.querySelectorAll('.nav-links a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 100) current = s.getAttribute('id');
+    });
+    navLinks.forEach(a => {
+      a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+    });
+  });
+
+  // Animate stats on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) e.target.style.opacity = '1';
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.why-card, .service-card').forEach(el => {
+    el.style.opacity = '0';
+    el.style.transition = 'opacity 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

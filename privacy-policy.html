@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy | Windsor Automation Systems</title>
+<meta name="description" content="Privacy Policy for Windsor Automation Systems Pty Ltd — how we collect, use, and protect your personal information.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0d1f3c;
+    --steel: #2a4a7f;
+    --sky: #4a90d9;
+    --sky-light: #d6eaf8;
+    --gold: #c9a84c;
+    --white: #ffffff;
+    --off-white: #f7f8fa;
+    --text-dark: #0d1f3c;
+    --text-mid: #3a4a63;
+    --text-light: #6b7d99;
+    --border: rgba(42,74,127,0.15);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-dark);
+    background: var(--white);
+    line-height: 1.7;
+  }
+
+  /* NAV */
+  nav {
+    background: rgba(13,31,60,0.97);
+    padding: 0 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 68px;
+    border-bottom: 1px solid rgba(201,168,76,0.3);
+  }
+
+  .nav-brand {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+
+  .nav-logo {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--gold) 0%, #e8c06a 100%);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700; font-size: 18px; color: var(--navy);
+  }
+
+  .nav-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px; font-weight: 600; color: var(--white);
+    letter-spacing: 0.02em;
+  }
+
+  .nav-name span { color: var(--gold); }
+
+  .nav-back {
+    color: rgba(255,255,255,0.7); text-decoration: none;
+    font-size: 14px; font-weight: 500;
+    display: flex; align-items: center; gap: 6px;
+    transition: color 0.2s;
+  }
+
+  .nav-back:hover { color: var(--gold); }
+
+  /* HERO */
+  .page-hero {
+    background: var(--navy);
+    padding: 60px 5vw 56px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .breadcrumb {
+    font-size: 13px; color: rgba(255,255,255,0.45);
+    margin-bottom: 20px; display: flex; align-items: center; gap: 8px;
+  }
+
+  .breadcrumb a { color: var(--gold); text-decoration: none; }
+  .breadcrumb a:hover { text-decoration: underline; }
+
+  .page-hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 48px); font-weight: 700;
+    color: var(--white); line-height: 1.15; margin-bottom: 16px;
+  }
+
+  .page-hero p {
+    font-size: 16px; color: rgba(255,255,255,0.6); max-width: 580px;
+  }
+
+  .last-updated {
+    display: inline-block; margin-top: 20px;
+    background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.3);
+    color: var(--gold); font-size: 12px; font-weight: 600;
+    padding: 5px 14px; border-radius: 100px; letter-spacing: 0.04em;
+  }
+
+  /* LAYOUT */
+  .content-wrap {
+    max-width: 860px; margin: 0 auto;
+    padding: 64px 5vw 100px;
+    display: grid; grid-template-columns: 220px 1fr; gap: 60px;
+    align-items: start;
+  }
+
+  /* SIDEBAR TOC */
+  .toc {
+    position: sticky; top: 88px;
+  }
+
+  .toc-title {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--text-light); margin-bottom: 16px;
+  }
+
+  .toc-list { list-style: none; }
+
+  .toc-list li { margin-bottom: 4px; }
+
+  .toc-list a {
+    display: block; font-size: 13px; color: var(--text-mid);
+    text-decoration: none; padding: 6px 12px;
+    border-left: 2px solid var(--border);
+    transition: color 0.2s, border-color 0.2s;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .toc-list a:hover, .toc-list a.active {
+    color: var(--sky); border-left-color: var(--sky);
+    background: var(--sky-light);
+  }
+
+  /* MAIN CONTENT */
+  .policy-body section {
+    margin-bottom: 52px;
+    padding-bottom: 52px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .policy-body section:last-child {
+    border-bottom: none; margin-bottom: 0; padding-bottom: 0;
+  }
+
+  .section-number {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--sky); margin-bottom: 8px;
+  }
+
+  .policy-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; font-weight: 700; color: var(--text-dark);
+    margin-bottom: 16px; line-height: 1.3;
+  }
+
+  .policy-body p {
+    font-size: 15px; color: var(--text-mid); margin-bottom: 16px;
+    line-height: 1.8;
+  }
+
+  .policy-body p:last-child { margin-bottom: 0; }
+
+  .policy-body ul, .policy-body ol {
+    margin: 16px 0; padding-left: 0; list-style: none;
+  }
+
+  .policy-body ul li, .policy-body ol li {
+    font-size: 15px; color: var(--text-mid); padding: 8px 0 8px 28px;
+    position: relative; border-bottom: 1px solid var(--border); line-height: 1.7;
+  }
+
+  .policy-body ul li:first-child, .policy-body ol li:first-child { border-top: 1px solid var(--border); }
+
+  .policy-body ul li::before {
+    content: '';
+    position: absolute; left: 0; top: 18px;
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--sky);
+  }
+
+  .policy-body ol { counter-reset: ol-counter; }
+
+  .policy-body ol li::before {
+    counter-increment: ol-counter;
+    content: counter(ol-counter);
+    position: absolute; left: 0; top: 8px;
+    width: 20px; height: 20px; border-radius: 50%;
+    background: var(--sky-light); color: var(--steel);
+    font-size: 11px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .policy-body strong { color: var(--text-dark); font-weight: 600; }
+
+  .highlight-box {
+    background: var(--sky-light);
+    border-left: 3px solid var(--sky);
+    border-radius: 0 8px 8px 0;
+    padding: 18px 20px; margin: 20px 0;
+  }
+
+  .highlight-box p {
+    margin: 0; font-size: 14px; color: var(--steel);
+  }
+
+  .contact-box {
+    background: var(--navy);
+    border-radius: 14px; padding: 28px 32px;
+    margin-top: 24px;
+  }
+
+  .contact-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px; font-weight: 700; color: var(--white); margin-bottom: 16px;
+  }
+
+  .contact-box-item {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 12px; font-size: 14px; color: rgba(255,255,255,0.7);
+  }
+
+  .contact-box-item:last-child { margin-bottom: 0; }
+
+  .contact-box-item strong { color: var(--gold); min-width: 60px; display: inline-block; }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    padding: 32px 5vw;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 16px;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+
+  .footer-copy { font-size: 13px; color: rgba(255,255,255,0.5); }
+
+  .footer-links { display: flex; gap: 24px; }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.5); text-decoration: none;
+    font-size: 13px; transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  @media (max-width: 768px) {
+    .content-wrap { grid-template-columns: 1fr; }
+    .toc { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-brand">
+    <div class="nav-logo">W</div>
+    <div class="nav-name">Windsor <span>Automation</span></div>
+  </a>
+  <a href="index.html" class="nav-back">← Back to Home</a>
+</nav>
+
+<div class="page-hero">
+  <div class="breadcrumb">
+    <a href="index.html">Home</a> › Privacy Policy
+  </div>
+  <h1>Privacy Policy</h1>
+  <p>This policy explains how Windsor Automation Systems Pty Ltd collects, uses, discloses, and safeguards your personal information in accordance with the Australian Privacy Act 1988 and the Australian Privacy Principles (APPs).</p>
+  <span class="last-updated">Last updated: 24 May 2025</span>
+</div>
+
+<div class="content-wrap">
+
+  <!-- SIDEBAR TOC -->
+  <aside class="toc">
+    <div class="toc-title">Contents</div>
+    <ul class="toc-list">
+      <li><a href="#s1">1. Who We Are</a></li>
+      <li><a href="#s2">2. Information We Collect</a></li>
+      <li><a href="#s3">3. How We Collect It</a></li>
+      <li><a href="#s4">4. How We Use It</a></li>
+      <li><a href="#s5">5. Google Home & Third-Party Services</a></li>
+      <li><a href="#s6">6. Disclosure of Information</a></li>
+      <li><a href="#s7">7. Data Security</a></li>
+      <li><a href="#s8">8. Data Retention</a></li>
+      <li><a href="#s9">9. Your Rights</a></li>
+      <li><a href="#s10">10. Cookies & Analytics</a></li>
+      <li><a href="#s11">11. Cross-Border Transfers</a></li>
+      <li><a href="#s12">12. Children's Privacy</a></li>
+      <li><a href="#s13">13. Policy Changes</a></li>
+      <li><a href="#s14">14. Contact Us</a></li>
+    </ul>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="policy-body">
+
+    <section id="s1">
+      <div class="section-number">Section 01</div>
+      <h2>Who We Are</h2>
+      <p>Windsor Automation Systems Pty Ltd (ABN 96 527 373 102) ("we", "us", "our") is an Australian company that designs, installs, and supports smart home and building automation systems. Our principal place of business is in Melbourne, Victoria, Australia.</p>
+      <p>We are committed to protecting the privacy of our customers, prospective customers, and website visitors. This Privacy Policy applies to all personal information we collect through our website (<strong>windsorautomation.com.au</strong>), our services, our mobile applications, and any connected smart home platforms we manage on your behalf.</p>
+    </section>
+
+    <section id="s2">
+      <div class="section-number">Section 02</div>
+      <h2>Information We Collect</h2>
+      <p>We collect personal information only where it is reasonably necessary for our functions and activities. The types of information we may collect include:</p>
+      <ul>
+        <li><strong>Identity information:</strong> Full name, date of birth (where required for identity verification)</li>
+        <li><strong>Contact information:</strong> Email address, phone number, residential or business address</li>
+        <li><strong>Service information:</strong> Details about your property, existing devices, and automation requirements</li>
+        <li><strong>Technical information:</strong> IP address, browser type, device identifiers, and usage data from our website</li>
+        <li><strong>Smart home data:</strong> Device status, usage patterns, automation schedules, and sensor readings collected as part of our services — only with your explicit consent</li>
+        <li><strong>Financial information:</strong> Billing address and payment references (we do not store full card details — payments are processed by PCI-compliant third-party providers)</li>
+        <li><strong>Communications:</strong> Records of correspondence, support requests, and service enquiries</li>
+      </ul>
+    </section>
+
+    <section id="s3">
+      <div class="section-number">Section 03</div>
+      <h2>How We Collect Information</h2>
+      <p>We collect personal information in a number of ways:</p>
+      <ul>
+        <li>Directly from you when you submit an enquiry, book a consultation, or sign a service agreement</li>
+        <li>Through our website contact forms, live chat, and email communications</li>
+        <li>During on-site assessments and installation visits</li>
+        <li>Via the smart home systems and devices we install and maintain on your behalf</li>
+        <li>Through third-party platforms such as Google Home, where you have authorised us to access your account or device data</li>
+        <li>Through cookies, analytics tools, and similar technologies on our website (see Section 10)</li>
+      </ul>
+      <div class="highlight-box">
+        <p>We will always tell you why we are collecting your information at or before the time of collection. You are not required to provide personal information, but some services may be unavailable if you choose not to.</p>
+      </div>
+    </section>
+
+    <section id="s4">
+      <div class="section-number">Section 04</div>
+      <h2>How We Use Your Information</h2>
+      <p>We use your personal information for the following purposes:</p>
+      <ul>
+        <li>To respond to your enquiries and provide quotes or consultations</li>
+        <li>To deliver, install, configure, and support our smart home automation services</li>
+        <li>To manage ongoing maintenance contracts and service agreements</li>
+        <li>To process payments and send invoices</li>
+        <li>To send service notifications, appointment reminders, and system alerts</li>
+        <li>To improve our products, services, and website through analysis of usage patterns</li>
+        <li>To meet our legal, regulatory, and insurance obligations</li>
+        <li>To send marketing communications about our products and services — only where you have opted in, or where permitted under the Spam Act 2003</li>
+      </ul>
+      <p>We will not use your information for any purpose that is incompatible with the purpose for which it was originally collected, without your consent.</p>
+    </section>
+
+    <section id="s5">
+      <div class="section-number">Section 05</div>
+      <h2>Google Home & Third-Party Services</h2>
+      <p>Our services frequently involve integration with Google Home, Google Assistant, and related Google platforms. When we assist you with these integrations:</p>
+      <ul>
+        <li>You authorise access to your Google Home account only to the extent necessary to configure and test your automation system</li>
+        <li>We access device data (such as device states, room assignments, and routines) solely to fulfil our service obligations</li>
+        <li>We do not store Google account credentials. Authentication is handled through Google's own OAuth 2.0 authorisation system</li>
+        <li>Smart home device data accessed via the Google Home or Google Cloud APIs is governed by both this policy and <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google's Privacy Policy</a></li>
+        <li>We do not sell, share, or use your Google Home data for advertising or analytics unrelated to your service</li>
+      </ul>
+      <div class="highlight-box">
+        <p>You may revoke our access to your Google Home account at any time through your Google Account settings at <strong>myaccount.google.com</strong> under "Third-party apps with account access".</p>
+      </div>
+      <p>We may also integrate with other third-party platforms (such as Amazon Alexa, Apple HomeKit, or Matter-compatible devices) as part of your system. Each integration is subject to the respective platform's privacy policy, and we will inform you of any such connections before they are established.</p>
+    </section>
+
+    <section id="s6">
+      <div class="section-number">Section 06</div>
+      <h2>Disclosure of Your Information</h2>
+      <p>We do not sell your personal information to third parties. We may disclose your information to:</p>
+      <ul>
+        <li><strong>Service providers:</strong> Contractors, subcontractors, and technology partners who assist us in delivering our services (bound by confidentiality obligations)</li>
+        <li><strong>Payment processors:</strong> PCI-DSS compliant payment gateways that process transactions on our behalf</li>
+        <li><strong>Platform providers:</strong> Google LLC and other smart home platform operators, to the extent required to configure and operate your system</li>
+        <li><strong>Professional advisers:</strong> Lawyers, accountants, and insurers under strict confidentiality obligations</li>
+        <li><strong>Regulatory bodies:</strong> Government agencies or law enforcement where required by law, court order, or to protect the rights and safety of individuals</li>
+      </ul>
+      <p>We require all third parties to respect the security of your personal information and to treat it in accordance with Australian privacy law.</p>
+    </section>
+
+    <section id="s7">
+      <div class="section-number">Section 07</div>
+      <h2>Data Security</h2>
+      <p>We take reasonable technical and organisational measures to protect your personal information from unauthorised access, use, disclosure, alteration, or destruction. These measures include:</p>
+      <ul>
+        <li>TLS/SSL encryption for all data transmitted through our website and portals</li>
+        <li>Access controls and role-based permissions for staff accessing customer data</li>
+        <li>Encrypted storage for sensitive customer records</li>
+        <li>Regular security assessments and staff privacy training</li>
+        <li>Secure destruction or de-identification of data that is no longer required</li>
+      </ul>
+      <p>Despite these measures, no data transmission or storage system is completely secure. If you believe your information has been compromised, please contact us immediately using the details in Section 14.</p>
+      <p>In the event of an eligible data breach as defined under the Notifiable Data Breaches scheme (Privacy Act 1988), we will notify affected individuals and the Office of the Australian Information Commissioner (OAIC) as required by law.</p>
+    </section>
+
+    <section id="s8">
+      <div class="section-number">Section 08</div>
+      <h2>Data Retention</h2>
+      <p>We retain personal information for as long as necessary to fulfil the purposes described in this policy, or as required by law. Our general retention periods are:</p>
+      <ul>
+        <li><strong>Customer records and service files:</strong> 7 years after the conclusion of the service relationship (to meet taxation and legal obligations)</li>
+        <li><strong>Contact and enquiry records:</strong> 2 years from the date of last contact</li>
+        <li><strong>Smart home device data:</strong> Retained for the duration of your service agreement, then deleted or de-identified within 30 days of termination</li>
+        <li><strong>Website analytics data:</strong> Up to 26 months, in accordance with our analytics provider's data retention settings</li>
+      </ul>
+      <p>When personal information is no longer required, we destroy or de-identify it securely.</p>
+    </section>
+
+    <section id="s9">
+      <div class="section-number">Section 09</div>
+      <h2>Your Privacy Rights</h2>
+      <p>Under the Australian Privacy Act 1988 and the Australian Privacy Principles, you have the right to:</p>
+      <ul>
+        <li><strong>Access:</strong> Request a copy of the personal information we hold about you</li>
+        <li><strong>Correction:</strong> Ask us to correct information that is inaccurate, incomplete, or out of date</li>
+        <li><strong>Opt-out:</strong> Unsubscribe from marketing communications at any time using the unsubscribe link in our emails, or by contacting us directly</li>
+        <li><strong>Complaint:</strong> Lodge a complaint with us if you believe we have mishandled your personal information</li>
+        <li><strong>OAIC complaint:</strong> If you are unsatisfied with our response, you may escalate your complaint to the Office of the Australian Information Commissioner at <a href="https://www.oaic.gov.au" target="_blank" rel="noopener noreferrer">oaic.gov.au</a></li>
+      </ul>
+      <p>To exercise any of these rights, please contact our Privacy Officer using the details in Section 14. We will respond to access and correction requests within 30 days.</p>
+    </section>
+
+    <section id="s10">
+      <div class="section-number">Section 10</div>
+      <h2>Cookies & Analytics</h2>
+      <p>Our website uses cookies and similar tracking technologies to improve your experience and understand how visitors use our site. The types of cookies we use include:</p>
+      <ul>
+        <li><strong>Essential cookies:</strong> Necessary for the website to function correctly (cannot be disabled)</li>
+        <li><strong>Analytics cookies:</strong> Help us understand traffic patterns and user behaviour (e.g. Google Analytics)</li>
+        <li><strong>Preference cookies:</strong> Remember your settings and preferences</li>
+      </ul>
+      <p>You can control cookies through your browser settings. Disabling non-essential cookies will not affect your ability to use our website. For more information about how Google Analytics handles data, visit <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">policies.google.com/privacy</a>.</p>
+    </section>
+
+    <section id="s11">
+      <div class="section-number">Section 11</div>
+      <h2>Cross-Border Data Transfers</h2>
+      <p>Some of our third-party service providers may store or process data outside Australia — for example, cloud infrastructure and platform services operated by Google LLC, which stores data in data centres across multiple regions.</p>
+      <p>Before disclosing your information overseas, we take reasonable steps to ensure the recipient's privacy practices offer comparable protections to those required under Australian law. Where feasible, we configure services to store data within Australia or the APAC region.</p>
+    </section>
+
+    <section id="s12">
+      <div class="section-number">Section 12</div>
+      <h2>Children's Privacy</h2>
+      <p>Our services are directed at adults and are not intended for use by children under 13 years of age. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected information from a child, please contact us and we will promptly delete it.</p>
+    </section>
+
+    <section id="s13">
+      <div class="section-number">Section 13</div>
+      <h2>Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or for other operational reasons. When we make material changes, we will update the "Last updated" date at the top of this page and, where appropriate, notify you by email.</p>
+      <p>We encourage you to review this policy periodically. Your continued use of our services after any changes are posted constitutes your acceptance of the updated policy.</p>
+    </section>
+
+    <section id="s14">
+      <div class="section-number">Section 14</div>
+      <h2>Contact Us</h2>
+      <p>For any privacy-related enquiries, access requests, corrections, or complaints, please contact our Privacy Officer:</p>
+      <div class="contact-box">
+        <h3>Privacy Officer — Windsor Automation Systems</h3>
+        <div class="contact-box-item"><strong>Post:</strong> Windsor Automation Systems Pty Ltd, Melbourne VIC, Australia</div>
+        <div class="contact-box-item"><strong>Email:</strong> privacy@windsorautomation.com.au</div>
+        <div class="contact-box-item"><strong>Phone:</strong> +61 3 9000 1234</div>
+        <div class="contact-box-item"><strong>Hours:</strong> Monday – Friday, 8:00am – 6:00pm AEST</div>
+      </div>
+      <p style="margin-top: 24px;">If you are not satisfied with how we handle your complaint, you may contact the <strong>Office of the Australian Information Commissioner (OAIC)</strong>:</p>
+      <ul>
+        <li>Website: <a href="https://www.oaic.gov.au" target="_blank" rel="noopener noreferrer">www.oaic.gov.au</a></li>
+        <li>Phone: 1300 363 992</li>
+        <li>Post: GPO Box 5218, Sydney NSW 2001</li>
+      </ul>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <span class="footer-copy">© 2025 Windsor Automation Systems Pty Ltd (ABN 96 527 373 102). All rights reserved.</span>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="privacy-policy.html">Privacy Policy</a>
+    <a href="#">Terms of Service</a>
+  </div>
+</footer>
+
+<script>
+  // Highlight active TOC link on scroll
+  const sections = document.querySelectorAll('.policy-body section[id]');
+  const tocLinks = document.querySelectorAll('.toc-list a');
+
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.getAttribute('id');
+    });
+    tocLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  });
+</script>
+
+</body>
+</html>
